@@ -1,0 +1,33 @@
+
+<form method='post' enctype='multipart/form-data' class='col s12'>
+    {% csrf_token %}
+    <div class='row'>
+        <div class='input-field col s12 m8'>
+            {{ categoria_form.nome }}
+            <label for='nome'>Nome</label>
+            <span class='helper-text' data-error='wrong' data-success='right'></span>
+        </div>
+        <div class='input-field col s12 m4'>
+            <button class='btn waves-effect waves-light' type='submit' name='nova_categoria'>Registar <i class='material-icons right'>send</i>
+        </div>
+    </div>
+</form>
+
+  <table class="striped centered responsive-table">
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for c in categorias %}
+      <tr>
+      <td>{{ c.nome }}</td>
+      <td><a href="{% url 'transacoes:edita_categoria' c.id %}">Editar</a> | <a href="{% url 'transacoes:apaga_categoria' c.id %}">Apagar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+

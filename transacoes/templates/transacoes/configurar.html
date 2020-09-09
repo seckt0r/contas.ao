@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block conteudo %}
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s4"><a href="#categoria">Categorias</a></li>
+      <li class="tab col s4"><a href="#entidade">Entidades</a></li>
+      <li class="tab col s4"><a href="#conta">Contas</a></li>
+    </ul>
+  </div>
+  <div id="categoria" class="col s12">
+    {% include 'transacoes/inc_categoria.html' %}
+  </div>
+  <div id="entidade" class="col s12">
+    {% include 'transacoes/inc_entidade.html' %}
+  </div>
+  <div id="conta" class="col s12">
+    {% include 'transacoes/inc_conta.html' %}
+  </div>
+</div>
+{% endblock %} {% block extrajs %}
+<script>
+  $(document).ready(function () {
+    $(".tabs").tabs();
+  });
+</script>
+{% endblock %}

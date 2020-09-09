@@ -1,0 +1,39 @@
+
+<form method='post' enctype='multipart/form-data' class='col s12'>
+    {% csrf_token %}
+    <div class='row'>
+        <div class='input-field col s12 m4'>
+            {{ entidade_form.nome }}
+            <label for='nome'>Nome</label>
+            <span class='helper-text' data-error='wrong' data-success='right'></span>
+        </div>
+        <div class='input-field col s12 m4'>
+            {{ entidade_form.nif }}
+            <label for='nome'>NIF</label>
+            <span class='helper-text' data-error='wrong' data-success='right'></span>
+        </div>
+        <div class='input-field col s12 m4'>
+            <button class='btn waves-effect waves-light' type='submit' name='nova_entidade'>Registar <i class='material-icons right'>send</i>
+        </div>
+    </div>
+</form>
+
+  <table class="striped centered responsive-table">
+    <thead>
+      <tr>
+        <th>Entidade</th>
+        <th>NIF</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for e in entidades %}
+      <tr>
+      <td>{{ e.nome }}</td>
+      <td>{{ e.nif }}</td>
+      <td><a href="{% url 'transacoes:edita_entidade' e.id %}">Editar</a> | <a href="{% url 'transacoes:apaga_entidade' e.id %}">Apagar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

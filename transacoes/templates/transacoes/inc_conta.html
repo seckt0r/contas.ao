@@ -1,0 +1,46 @@
+
+<form method='post' enctype='multipart/form-data' class='col s12'>
+    {% csrf_token %}
+    <div class='row'>
+        <div class='input-field col s12 m3'>
+            {{ conta_form.nome }}
+            <label for='nome'>Nome</label>
+            <span class='helper-text' data-error='wrong' data-success='right'></span>
+        </div>
+        <div class='input-field col s12 m3'>
+            {{ conta_form.tipo }}
+            <label for='tipo'>Tipo</label>
+            <span class='helper-text' data-error='wrong' data-success='right'></span>
+        </div>
+        <div class='input-field col s12 m3'>
+            {{ conta_form.id_entidade }}
+            <label for='id_entidade'>Entidade</label>
+            <span class='helper-text' data-error='wrong' data-success='right'></span>
+        </div>
+        <div class='input-field col s12 m3'>
+            <button class='btn waves-effect waves-light' type='submit' name='nova_conta'>Registar <i class='material-icons right'>send</i>
+        </div>
+    </div>
+</form>
+
+  <table class="striped centered responsive-table">
+    <thead>
+      <tr>
+        <th>Conta</th>
+        <th>Tipo</th>
+        <th>Entidade</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for c in contas %}
+      <tr>
+      <td>{{ c.nome }}</td>
+      <td>{{ c.get_tipo_display }}</td>
+      <td>{{ c.id_entidade }}</td>
+      <td><a href="{% url 'transacoes:edita_conta' c.id %}">Editar</a> | <a href="{% url 'transacoes:apaga_conta' c.id %}">Apagar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
